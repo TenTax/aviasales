@@ -1,8 +1,10 @@
 import Axios from 'axios';
 import React from 'react';
+import Filter from '../Filter/Filter';
 
-import GridList from '@material-ui/core/GridList';
-import Card from '@material-ui/core/Card';
+import TabContainer from '../TabContainer/TabContainer';
+
+import './App.css';
 
 class App extends React.Component {
     constructor(props) {
@@ -30,13 +32,11 @@ class App extends React.Component {
     }
 
     render() {
-        const tickets = this.state.tickets.map((ticket, i) => {
-        return <Card key={i}>{ticket.price} {ticket.carrier}</Card>;
-        });
         return (
-            <GridList cellHeight={'auto'} cols={1}>
-                {tickets}
-            </GridList>
+            <div className="App">
+                <Filter />
+                <TabContainer tickets={this.state.tickets} />
+            </div>
         );
     }
 }
