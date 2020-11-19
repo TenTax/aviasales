@@ -45,7 +45,7 @@ const TabTicket = ({ ticket }) => {
                     <div className='TabTicketTitle'>{stopsParse(segments[0].stops)}</div>
                     <div className='TabTicketText'>
                         {segments[0].stops.map((stop, i, stops) => {
-                            return <span>{++i !== stops.length ? stop + ',' : stop} </span>
+                            return <span key={i}>{++i !== stops.length ? stop + ',' : stop} </span>
                         })}
                     </div>
                 </div>
@@ -65,7 +65,7 @@ const TabTicket = ({ ticket }) => {
                     <div className='TabTicketTitle'>{stopsParse(segments[1].stops)}</div>
                     <div className='TabTicketText'>
                         {segments[1].stops.map((stop, i, stops) => {
-                            return <span>{++i !== stops.length ? stop + ',' : stop} </span>
+                            return <span key={i}>{++i !== stops.length ? stop + ',' : stop} </span>
                         })}
                     </div>
                 </div>
