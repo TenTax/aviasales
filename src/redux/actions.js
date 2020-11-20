@@ -35,20 +35,18 @@ export const setTickets = () => {
     }
 }
 
-export const sortingPrice = (tickets) => {
+export const sortingPrice = () => {
     return (dispatch) => {
         dispatch({
-            type: SORTING_PRICE,
-            tickets: tickets
+            type: SORTING_PRICE
         });
     }
 }
 
-export const sortingDuration = (tickets) => {
+export const sortingDuration = () => {
     return (dispatch) => {
         dispatch({
-            type: SORTING_DURATION,
-            tickets: tickets
+            type: SORTING_DURATION
         });
     }
 }

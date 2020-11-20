@@ -1,40 +1,44 @@
-import './TabContainer.css';
-// import TabNav from './TabNav/TabNav';
-import TabTicket from './TabTicket/TabTicket';
-import { setTickets, sortingPrice, sortingDuration } from '../../redux/actions';
-import { connect } from 'react-redux';
 import React from 'react';
+import { connect } from 'react-redux';
 
+import { setTickets } from '../../redux/actions';
+
+import TabNav from './TabNav/TabNav';
+import TabTicket from './TabTicket/TabTicket';
+
+import './TabContainer.css';
 
 class TabContainer extends React.Component {
     componentDidMount() {
-        console.log(this.props);
         this.props.setTickets();
     }
 
     render() {
-        const { tickets, sortingPrice, sortingDuration } = this.props;
+        const { tickets, sort } = this.props;
 
-        const sortOfPrice = () => {
-            console.log(tickets);
-            sortingPrice(tickets);
-            this.forceUpdate();
-        }
-
-        const sortOfDuration = () => {
-            console.log(tickets);
-            sortingDuration(tickets);
-            this.forceUpdate();
+        const ticketsSorting = () => {
+            return tickets
+                .sort((a, b) => {
+                    if (sort === 'price') {
+                        if (a.price > b.price) return 1;
+                        if (a.price === b.price) return 0;
+                        if (a.price < b.price) return -1;
+                    } else if (sort === 'duration') {
+                        a = a.segments[0].duration + a.segments[1].duration;
+                        b = b.segments[0].duration + b.segments[1].duration;
+                        if (a > b) return 1;
+                        if (a === b) return 0;
+                        if (a < b) return -1;
+                    }
+                })
+                .map((ticket, i) => <TabTicket key={i} ticket={ticket} />);
         }
 
 
         return (
             <div className='TabContainer'>
-                <div className='TabNav'>
-                    <button onClick={sortOfPrice} className='TabNavButton _active'>Самый дешевый</button>
-                    <button onClick={sortOfDuration} className='TabNavButton'>Самый быстрый</button>
-                </div>
-                {tickets.map((ticket, i) => <TabTicket key={i} ticket={ticket} />)}
+                <TabNav />
+                {ticketsSorting()}
             </div>
         );
     }
@@ -42,14 +46,13 @@ class TabContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        tickets: state.ticketsReduce.tickets
+        tickets: state.ticketsReduce.tickets,
+        sort: state.ticketsReduce.sort
     };
 }
 
 const mapDispatchToProps = {
-    setTickets,
-    sortingPrice,
-    sortingDuration
+    setTickets
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TabContainer);

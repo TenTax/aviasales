@@ -3,7 +3,8 @@ import { GET_TICKETS_FAILED, GET_TICKETS_REQUEST, GET_TICKETS_SUCCESS, SORTING_D
 const initialState = {
     isFetching: false,
     tickets: [],
-    failed: false
+    failed: false,
+    sort: 'duration'
 }
 
 const reducer = (state = initialState, action) => {
@@ -28,27 +29,15 @@ const reducer = (state = initialState, action) => {
             }
         }
         case SORTING_PRICE: {
-            console.log('price');
             return {
                 ...state,
-                tickets: action.tickets.sort((a, b) => {
-                    if (a.price > b.price) return 1;
-                    if (a.price === b.price) return 0;
-                    if (a.price < b.price) return -1;
-                })
+                sort: 'price'
             }
         }
         case SORTING_DURATION: {
-            console.log('durik');
             return {
                 ...state,
-                tickets: action.tickets.sort((a, b) => {
-                    a = a.segments[0].duration + a.segments[1].duration;
-                    b = b.segments[0].duration + b.segments[1].duration;
-                    if (a > b) return 1;
-                    if (a === b) return 0;
-                    if (a < b) return -1;
-                })
+                sort: 'duration'
             }
         }
         default:
