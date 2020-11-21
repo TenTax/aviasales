@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { setTickets } from '../../redux/actions';
+import { setTickets, nextPage } from '../../redux/actions';
 
 import TabNav from './TabNav/TabNav';
 import TabTicket from './TabTicket/TabTicket';
 
 import './TabContainer.css';
+import Preloader from '../Preloader/Preloader';
 
 class TabContainer extends React.Component {
     componentDidMount() {
@@ -14,7 +15,7 @@ class TabContainer extends React.Component {
     }
 
     render() {
-        const { tickets, sort } = this.props;
+        const { tickets, sort, perPage, pageCount, nextPage, isFetching } = this.props;
 
         const ticketsSorting = () => {
             return tickets
@@ -31,14 +32,24 @@ class TabContainer extends React.Component {
                         if (a < b) return -1;
                     }
                 })
+                .slice(1, pageCount * perPage + 1)
                 .map((ticket, i) => <TabTicket key={i} ticket={ticket} />);
         }
-
 
         return (
             <div className='TabContainer'>
                 <TabNav />
-                {ticketsSorting()}
+                {isFetching
+                    ? <Preloader />
+                    : <div className='TabContainerTicketsBox'>
+                        {ticketsSorting()}
+                        <button
+                            className='TabContainerBtn'
+                            onClick={() => nextPage(pageCount)}>
+                            Загрузить еще
+                        </button>
+                      </div>
+                }
             </div>
         );
     }
@@ -47,12 +58,16 @@ class TabContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         tickets: state.ticketsReduce.tickets,
-        sort: state.ticketsReduce.sort
+        sort: state.ticketsReduce.sort,
+        perPage: state.ticketsReduce.perPage,
+        pageCount: state.ticketsReduce.pageCount,
+        isFetching: state.ticketsReduce.isFetching
     };
 }
 
 const mapDispatchToProps = {
-    setTickets
+    setTickets,
+    nextPage
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TabContainer);
