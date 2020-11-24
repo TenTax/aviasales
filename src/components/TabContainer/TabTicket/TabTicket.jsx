@@ -24,7 +24,7 @@ const TabTicket = ({ ticket }) => {
         <div className='TabTicket'>
             <div className='TabTicketRow'>
                 <div className='TabTicketCol'>
-                    <div className='TabTicketPrice'>{price} Р</div>
+                    <div className='TabTicketPrice'>{price.toLocaleString()} Р</div>
                 </div>
                 <div className='TabTicketCol'>
                     <img className='TabTicketImage' src={`//pics.avs.io/99/36/${carrier}.png`} alt="" />
