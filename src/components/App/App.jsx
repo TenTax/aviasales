@@ -1,7 +1,7 @@
 import React from 'react';
 import Filter from '../Filter/Filter';
 
-import { setTickets } from '../../redux/actions';
+import { setTickets, nextPage } from '../../redux/actions';
 
 import Logo from '../Logo/Logo';
 import Tickets from '../Tickets/Tickets';
@@ -14,7 +14,18 @@ import Preloader from '../Preloader/Preloader';
 class App extends React.Component {
     componentDidMount() {
         this.props.setTickets();
+
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.offsetHeight,
+                clientHeight = document.documentElement.clientHeight,
+                scrollBottom = document.documentElement.scrollTop;
+
+            if ((scrollBottom + clientHeight) > (docHeight - clientHeight)) {
+                this.props.nextPage(this.props.pageCount)
+            }
+        });
     }
+
     render() {
         const { isFetching } = this.props;
 
@@ -43,12 +54,14 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        isFetching: state.ticketsReduce.isFetching
+        isFetching: state.ticketsReduce.isFetching,
+        pageCount: state.ticketsReduce.pageCount
     }
 }
 
 const mapDispatchToProps = {
-    setTickets
+    setTickets,
+    nextPage
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

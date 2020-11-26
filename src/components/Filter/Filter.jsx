@@ -1,18 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addFilter, delFilter } from '../../redux/actions';
+import { setFilter } from '../../redux/actions';
 import './Filter.css';
 
 class Filter extends React.Component {
     render() {
-        const { addFilter, delFilter } = this.props;
+        const { setFilter } = this.props;
 
         const filterCheck = (e) => {
-            if (e.target.checked) {
-                addFilter(e.target.getAttribute('data-filter'));
-            } else {
-                delFilter(e.target.getAttribute('data-filter'))
-            }
+            setFilter(e.target.getAttribute('data-filter'));
         }
 
         return (
@@ -40,14 +36,11 @@ class Filter extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {
-
-    }
+    return {}
 }
 
 const mapDispatchToProps = {
-    addFilter,
-    delFilter
+    setFilter
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

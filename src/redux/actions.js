@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { GET_TICKETS_FAILED, GET_TICKETS_SUCCESS, NEXT_PAGE, SORTING_DURATION, SORTING_PRICE, SET_FETCHING, DEL_FETCHING, ADD_FILTER, DEL_FILTER } from "./actionTypes";
+import { GET_TICKETS_FAILED, GET_TICKETS_SUCCESS, NEXT_PAGE, SORTING, FETCHING, SET_FILTER } from "./actionTypes";
 
 export const setTickets = () => {
     return (dispatch) => {
@@ -7,7 +7,8 @@ export const setTickets = () => {
         let data = {};
 
         dispatch({
-            type: SET_FETCHING
+            type: FETCHING,
+            isFetching: true
         });
 
         Axios.get('https://front-test.beta.aviasales.ru/search')
@@ -29,7 +30,8 @@ export const setTickets = () => {
                         getTickets();
                     } else {
                         dispatch({
-                            type: DEL_FETCHING
+                            type: FETCHING,
+                            isFetching: false
                         })
                     }
                 })
@@ -43,18 +45,11 @@ export const setTickets = () => {
     }
 }
 
-export const sortingPrice = () => {
+export const sorting = (sort) => {
     return (dispatch) => {
         dispatch({
-            type: SORTING_PRICE
-        });
-    }
-}
-
-export const sortingDuration = () => {
-    return (dispatch) => {
-        dispatch({
-            type: SORTING_DURATION
+            type: SORTING,
+            sort: sort
         });
     }
 }
@@ -68,19 +63,10 @@ export const nextPage = (pageCount) => {
     }
 }
 
-export const addFilter = (filter) => {
+export const setFilter = (filter) => {
     return (dispatch) => {
         dispatch({
-            type: ADD_FILTER,
-            filter: filter
-        });
-    }
-}
-
-export const delFilter = (filter) => {
-    return (dispatch) => {
-        dispatch({
-            type: DEL_FILTER,
+            type: SET_FILTER,
             filter: filter
         });
     }

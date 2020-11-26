@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { nextPage } from '../../redux/actions';
-
 import Ticket from './Ticket/Ticket';
 
 import './Tickets.css';
@@ -10,7 +8,7 @@ import './Tickets.css';
 class Tickets extends React.Component {
 
     render() {
-        const { tickets, sort, perPage, pageCount, nextPage, filter } = this.props;
+        const { tickets, sort, perPage, pageCount, filter } = this.props;
 
         return (
             <div className="tickets">
@@ -30,7 +28,6 @@ class Tickets extends React.Component {
                             }
                             return null;
                         })
-                        .slice(1, pageCount * perPage + 1)
                         .filter((ticket) => {
                             if (filter.length > 0) {
                                 for (let i = 0; i < filter.length; i++) {
@@ -47,9 +44,9 @@ class Tickets extends React.Component {
                             }
                             return null;
                         })
+                        .slice(1, pageCount * perPage + 1)
                         .map((ticket, i) => <Ticket key={i} ticket={ticket} />)
                 }
-                <button onClick={() => nextPage(pageCount)}>Загрузить еще</button>
             </div>
         );
     }
@@ -66,7 +63,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-    nextPage
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tickets);
