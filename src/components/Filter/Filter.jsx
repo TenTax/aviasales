@@ -16,22 +16,22 @@ class Filter extends React.Component {
         }
 
         return (
-            <div className='Filter'>
-                <div className='FilterTitle'>Количество пересадок</div>
-                <label className='FilterLabel' htmlFor="stopsWithout">
-                    <input onChange={filterCheck} className='FilterCheckbox' type="checkbox" id='stopsWithout' data-filter='0' />
+            <div className="filter">
+                <h2 className="filter__title">Количество пересадок</h2>
+                <label className="filter__label" htmlFor="stopsWithout">
+                    <input className="filter__checkbox" onChange={filterCheck} type="checkbox" id='stopsWithout' data-filter='0' />
                     <span>Без пересадок</span>
                 </label>
-                <label className='FilterLabel' htmlFor="oneStop">
-                    <input onChange={filterCheck} className='FilterCheckbox' type="checkbox" id='oneStop' data-filter='1' />
+                <label className="filter__label" htmlFor="oneStop">
+                    <input className="filter__checkbox" onChange={filterCheck} type="checkbox" id='oneStop' data-filter='1' />
                     <span>1 пересадка</span>
                 </label>
-                <label className='FilterLabel' htmlFor="twoStops">
-                    <input onChange={filterCheck} className='FilterCheckbox' type="checkbox" id='twoStops' data-filter='2' />
+                <label className="filter__label" htmlFor="twoStops">
+                    <input className="filter__checkbox" onChange={filterCheck} type="checkbox" id='twoStops' data-filter='2' />
                     <span>2 пересадки</span>
                 </label>
-                <label className='FilterLabel' htmlFor="threeStops">
-                    <input onChange={filterCheck} className='FilterCheckbox' type="checkbox" id='threeStops' data-filter='3' />
+                <label className="filter__label" htmlFor="threeStops">
+                    <input className="filter__checkbox" onChange={filterCheck} type="checkbox" id='threeStops' data-filter='3' />
                     <span>3 пересадки</span>
                 </label>
             </div>

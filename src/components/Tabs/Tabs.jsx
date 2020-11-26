@@ -1,24 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { sortingPrice, sortingDuration } from '../../../redux/actions';
+import { sortingPrice, sortingDuration } from '../../redux/actions';
 
-import './TabNav.css';
+import './Tabs.css';
 
-class TabNav extends React.Component {
+class Tabs extends React.Component {
     render() {
         const { sortingPrice, sortingDuration, sort } = this.props;
 
         return (
-            <div className='TabNav'>
+            <div className="tabs">
                 <button
                     onClick={sortingPrice}
-                    className={`TabNavButton ${sort === 'price' && '_active'}`}>
+                    className={`tabs__btn ${sort === 'price' && '_active'}`}>
                     Самый дешевый
                 </button>
                 <button
                     onClick={sortingDuration}
-                    className={`TabNavButton ${sort === 'duration' && '_active'}`}>
+                    className={`tabs__btn ${sort === 'duration' && '_active'}`}>
                     Самый быстрый
                 </button>
             </div>
@@ -37,4 +37,4 @@ const mapDispatchToProps = {
     sortingDuration
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TabNav);
+export default connect(mapStateToProps, mapDispatchToProps)(Tabs);
