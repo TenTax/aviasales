@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { GET_TICKETS_FAILED, GET_TICKETS_SUCCESS, NEXT_PAGE, SORTING_DURATION, SORTING_PRICE, SET_FETCHING, DEL_FETCHING } from "./actionTypes";
+import { GET_TICKETS_FAILED, GET_TICKETS_SUCCESS, NEXT_PAGE, SORTING_DURATION, SORTING_PRICE, SET_FETCHING, DEL_FETCHING, ADD_FILTER, DEL_FILTER } from "./actionTypes";
 
 export const setTickets = () => {
     return (dispatch) => {
@@ -64,6 +64,24 @@ export const nextPage = (pageCount) => {
         dispatch({
             type: NEXT_PAGE,
             pageCount: pageCount
+        });
+    }
+}
+
+export const addFilter = (filter) => {
+    return (dispatch) => {
+        dispatch({
+            type: ADD_FILTER,
+            filter: filter
+        });
+    }
+}
+
+export const delFilter = (filter) => {
+    return (dispatch) => {
+        dispatch({
+            type: DEL_FILTER,
+            filter: filter
         });
     }
 }

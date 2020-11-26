@@ -1,7 +1,9 @@
 import {
     GET_TICKETS_FAILED, GET_TICKETS_SUCCESS,
     SORTING_DURATION, SORTING_PRICE, NEXT_PAGE, SET_FETCHING,
-    DEL_FETCHING
+    DEL_FETCHING,
+    ADD_FILTER,
+    DEL_FILTER
 } from "../actionTypes"
 
 const initialState = {
@@ -9,8 +11,10 @@ const initialState = {
     sort: 'price',
     perPage: 20,
     pageCount: 1,
-
     isFetching: false,
+    filter: [],
+
+
     failed: false
 }
 
@@ -58,6 +62,26 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 pageCount: action.pageCount + 1
+            }
+        }
+        case ADD_FILTER: {
+            return {
+                ...state,
+                filter: state.filter.indexOf(+action.filter) === -1 ? [...state.filter, +action.filter] : [...state.filter]
+            }
+        }
+        case DEL_FILTER: {
+            const delItem = (filter) => {
+                let newArray = [...state.filter];
+
+                newArray.splice(newArray.indexOf(filter), 1)
+
+                return newArray;
+            }
+
+            return {
+                ...state,
+                filter: delItem(+action.filter)
             }
         }
         default:

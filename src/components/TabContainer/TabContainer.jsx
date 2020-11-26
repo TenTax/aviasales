@@ -15,7 +15,7 @@ class TabContainer extends React.Component {
     }
 
     render() {
-        const { tickets, sort, perPage, pageCount, nextPage, isFetching } = this.props;
+        const { tickets, sort, perPage, pageCount, nextPage, isFetching, filter } = this.props;
 
         const ticketsSorting = () => {
             return tickets
@@ -31,8 +31,26 @@ class TabContainer extends React.Component {
                         if (a === b) return 0;
                         if (a < b) return -1;
                     }
+                    return null;
                 })
                 .slice(1, pageCount * perPage + 1)
+                .filter((ticket) => {
+                    if(filter.length > 0) {
+                        for(let i = 0; i < filter.length; i++) {
+                            if(ticket.segments[0].stops.length === +filter[i]) {
+                                for(let j = 0; j < filter.length; j++) {
+                                    if(ticket.segments[1].stops.length === +filter[j]) {
+                                        return ticket;
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        return ticket;
+                    }
+
+                    return null;
+                })
                 .map((ticket, i) => <TabTicket key={i} ticket={ticket} />);
         }
 
@@ -61,7 +79,8 @@ const mapStateToProps = (state) => {
         sort: state.ticketsReduce.sort,
         perPage: state.ticketsReduce.perPage,
         pageCount: state.ticketsReduce.pageCount,
-        isFetching: state.ticketsReduce.isFetching
+        isFetching: state.ticketsReduce.isFetching,
+        filter: state.ticketsReduce.filter
     };
 }
 

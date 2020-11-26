@@ -5,3 +5,5 @@ export const SORTING_DURATION = 'SORTING_DURATION';
 export const NEXT_PAGE = 'NEXT_PAGE';
 export const SET_FETCHING = 'SET_FETCHING';
 export const DEL_FETCHING = 'DEL_FETCHING';
+export const ADD_FILTER = 'ADD_FILTER';
+export const DEL_FILTER = 'DEL_FILTER';
