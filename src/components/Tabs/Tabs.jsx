@@ -3,24 +3,29 @@ import { connect } from 'react-redux';
 
 import { sorting } from '../../redux/actions';
 
+import { Button, withStyles } from '@material-ui/core';
+
+import styles from './StylesTabs';
 import './Tabs.css';
 
 class Tabs extends React.Component {
     render() {
-        const { sort, sorting } = this.props;
+        const { sort, sorting, classes } = this.props;
 
         return (
             <div className="tabs">
-                <button
+                <Button
                     onClick={() => sorting('price')}
-                    className={`tabs__btn ${sort === 'price' && '_active'}`}>
+                    className={`${classes.button} ${sort === 'price' ? classes.selected : classes.unselected}`}
+                >
                     Самый дешевый
-                </button>
-                <button
+                </Button>
+                <Button
                     onClick={() => sorting('duration')}
-                    className={`tabs__btn ${sort === 'duration' && '_active'}`}>
+                    className={`${classes.button} ${sort === 'duration' ? classes.selected : classes.unselected}`}
+                >
                     Самый быстрый
-                </button>
+                </Button>
             </div>
         );
     }
@@ -36,4 +41,4 @@ const mapDispatchToProps = {
     sorting
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tabs);
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Tabs));
