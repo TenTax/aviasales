@@ -1,2 +1,0 @@
-# aviasales-test-task
- 

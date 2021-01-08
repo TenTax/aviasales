@@ -10,42 +10,27 @@
 
 body {
     background-color: #f3f7fa;
-    font-family: 'Open Sans', sans-serif;
-    color: #4A4A4A;
-    font-style : normal;
-    font-weight: normal;
+    font-family     : 'Open Sans', sans-serif;
+    color           : #4A4A4A;
+    font-style      : normal;
+    font-weight     : normal;
 }
 
-.app {
-    width: 754px;
-    margin: 0 auto;
+.App {
+    max-width: 794px;
+    margin   : 0 auto;
 }
 
-.app__logo {
-    display: flex;
-    justify-content: center;
-    margin: 50px 0;
+.AppContainer {
+    display              : grid;
+    grid-template-columns: 232px 502px;
+    grid-gap             : 20px;
+    align-items          : flex-start;
+    padding              : 0 20px 30px;
 }
 
-.app__row {
-    display: flex;
-    align-items: flex-start;
-}
-
-.app__filter {
-    margin-right: 20px;
-}
-
-.app__tabs {
-    margin-bottom: 20px;
-}
-
-.app__container {
-    width: 502px
-}
-
-.app__tickets {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+@media(max-width: 800px) {
+    .AppContainer {
+        grid-template-columns: 1fr;
+    }
 }

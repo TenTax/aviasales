@@ -1,5 +1,11 @@
-import './Preloder.css';
+import React from 'react';
 
-const Preloader = () => <div className='Preloader'></div>
+import './Preloader.css';
+
+const Preloader = () => (
+    <div className="Preloader">
+        <div className="PreloaderSpinner"></div>
+    </div>
+);
 
 export default Preloader;

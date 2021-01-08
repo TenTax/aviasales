@@ -1,0 +1,5 @@
+.SortPanel {
+    display      : flex;
+    color        : blue;
+    margin-bottom: 20px;
+}

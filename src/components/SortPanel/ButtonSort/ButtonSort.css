@@ -1,0 +1,47 @@
+.ButtonSort {
+    width  : 50%;
+    padding: 15px;
+
+    border            : 1px solid #DFE5EC;
+    border-left-width : 0;
+    border-right-width: 0;
+    background-color  : #fff;
+    outline           : none;
+    cursor            : pointer;
+
+    font-family   : inherit;
+    font-weight   : 600;
+    font-size     : 12px;
+    letter-spacing: 0.5px;
+    line-height   : 20px;
+    color         : #4A4A4A;
+    text-transform: uppercase;
+
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.ButtonSort:first-child {
+    border-top-left-radius   : 5px;
+    border-bottom-left-radius: 5px;
+    border-left-width        : 1px;
+}
+
+.ButtonSort:last-child {
+    border-top-right-radius   : 5px;
+    border-bottom-right-radius: 5px;
+    border-right-width        : 1px;
+}
+
+.ButtonSort.active {
+    background-color: #2196F3;
+    color           : #fff;
+    border-color    : #2196F3;
+}
+
+@media(max-width: 560px) {
+    .ButtonSort {
+        padding: 12px;
+
+        font-size: 10px;
+    }
+}

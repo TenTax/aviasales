@@ -1,0 +1,21 @@
+.FilterPanelLabel {
+    display    : flex;
+    align-items: center;
+    padding    : 10px 20px;
+
+    cursor: pointer;
+
+    font-size  : 13px;
+    line-height: 20px;
+    color      : #4A4A4A;
+}
+
+.FilterPanelLabel:hover {
+    background-color: #F1FCFF;
+}
+
+.FilterPanelLabel input {
+    width       : 20px;
+    height      : 20px;
+    margin-right: 10px;
+}

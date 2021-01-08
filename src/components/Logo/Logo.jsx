@@ -1,12 +1,12 @@
-import logo from '../../favicon.svg';
-import './Logo.css';
+import React from 'react';
 
-const Logo = () => {
-    return (
-        <div className="logo">
-            <img className="logo__img" src={logo} alt="logo"/>
-        </div>
-    )
-}
+import './Logo.css';
+import logo from './Logo.svg';
+
+const Logo = () => (
+    <div className="Logo">
+        <img className="LogoImage" src={logo} alt="logo aviasales" />
+    </div>
+);
 
 export default Logo;
