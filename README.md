@@ -8,10 +8,11 @@
 
 Выполнение тестового задания. [Ссылка](https://github.com/KosyanMedia/test-tasks/tree/master/aviasales_frontend) на тестовое задание
 
-### Установка зависимостей
+### Доступные команды
 
-`npm install`
-
-### Запуск приложения
-
-`npm run start`
+```bash 
+yarn install # Установка зависимостей
+yarn start # Запуск приложения
+yarn build # Сборка приложения
+yarn eject # Ручная настройка сборки
+```
